@@ -1,0 +1,409 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GAMEZONE | Gaming Phone Shop</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: #050505;
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND VIDEO */
+        .background-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* DARK OVERLAY */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.58);
+            z-index: -1;
+        }
+
+        /* NAVIGATION BAR */
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 12px 5%;
+            background: rgba(0, 0, 0, 0.72);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.18);
+            z-index: 10;
+        }
+
+        /* LOGO */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: clamp(19px, 2.2vw, 28px);
+            font-weight: bold;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .logo span {
+            color: #00e5ff;
+        }
+
+        /* NAVIGATION LINKS */
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 10px 12px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a:focus-visible {
+            color: #00e5ff;
+            border-bottom-color: #00e5ff;
+        }
+
+        nav ul li a.logout {
+            color: #ff8585;
+        }
+
+        nav ul li a.logout:hover,
+        nav ul li a.logout:focus-visible {
+            color: #ff4444;
+            border-bottom-color: #ff4444;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 120px 6% 50px;
+        }
+
+        /* MAIN TITLE */
+        h1 {
+            max-width: 1000px;
+            font-size: clamp(34px, 6.5vw, 70px);
+            line-height: 1.2;
+            letter-spacing: clamp(1px, 0.4vw, 3px);
+            overflow-wrap: anywhere;
+            text-shadow:
+                0 0 10px rgba(0, 229, 255, 0.85),
+                0 0 25px rgba(0, 229, 255, 0.6);
+            margin-bottom: 22px;
+        }
+
+        h1 span {
+            color: #00e5ff;
+        }
+
+        /* SUBTITLE */
+        .subtitle {
+            max-width: 650px;
+            font-size: clamp(15px, 2vw, 22px);
+            line-height: 1.7;
+            color: #e0e0e0;
+            margin-bottom: 32px;
+        }
+
+        /* SHOP BUTTON */
+        .shop-btn {
+            display: inline-block;
+            max-width: 100%;
+            padding: 15px 35px;
+            background: #00e5ff;
+            color: #000;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .shop-btn:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* MEDIUM SCREENS */
+        @media (max-width: 900px) {
+            nav {
+                padding: 12px 3%;
+                gap: 12px;
+            }
+
+            .logo {
+                gap: 7px;
+                letter-spacing: 1px;
+            }
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            nav ul {
+                gap: 2px;
+            }
+
+            nav ul li a {
+                padding: 9px 7px;
+                font-size: 14px;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            nav {
+                position: absolute;
+                min-height: auto;
+                flex-direction: column;
+                justify-content: center;
+                gap: 10px;
+                padding: 12px 8px;
+            }
+
+            .logo {
+                font-size: 23px;
+                justify-content: center;
+            }
+
+            .logo img {
+                width: 38px;
+                height: 38px;
+            }
+
+            nav ul {
+                width: 100%;
+                justify-content: center;
+                gap: 3px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+                padding: 9px 7px;
+            }
+
+            .main {
+                padding: 155px 20px 35px;
+            }
+
+            h1 {
+                font-size: clamp(32px, 8vw, 45px);
+                letter-spacing: 1px;
+                margin-bottom: 18px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+                line-height: 1.7;
+                margin-bottom: 25px;
+            }
+
+            .shop-btn {
+                font-size: 15px;
+                padding: 13px 28px;
+            }
+        }
+
+        /* VERY SMALL PHONES */
+        @media (max-width: 360px) {
+            nav ul {
+                gap: 0;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+                padding: 8px 5px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .main {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            h1 {
+                font-size: 31px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+
+        /* LANDSCAPE PHONES */
+        @media (max-height: 500px) and (orientation: landscape) {
+            nav {
+                position: absolute;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 8px 3%;
+            }
+
+            .logo img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+                padding: 7px 5px;
+            }
+
+            .main {
+                min-height: 100vh;
+                padding-top: 120px;
+                padding-bottom: 30px;
+            }
+        }
+
+        /* ACCESSIBILITY */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND VIDEO -->
+    <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="background-video"
+        aria-hidden="true"
+    >
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
+    <!-- DARK OVERLAY -->
+    <div class="overlay"></div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="Logo.jpg" alt="GAMEZONE Logo">
+            <span>GAMEZONE</span>
+        </a>
+
+        <ul>
+            <li>
+                <a href="index.html" aria-current="page">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html">About</a>
+            </li>
+
+            <li>
+                <a href="products.html">Products</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact</a>
+            </li>
+
+            <li>
+                <a href="loginform.html" class="logout">Log out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <h1>
+            LEVEL UP YOUR <span>GAME</span>
+        </h1>
+
+        <p class="subtitle">
+            Discover powerful gaming phones built for speed,
+            performance, and the ultimate mobile gaming experience.
+        </p>
+
+        <a href="products.html" class="shop-btn">
+            Explore Products
+        </a>
+
+    </main>
+
+</body>
+</html>

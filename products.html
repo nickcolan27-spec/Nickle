@@ -1,0 +1,493 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gaming Phones | Products</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        nav {
+            width: 100%;
+            background: #181818;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 30px;
+            border-bottom: 1px solid #292929;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 4px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            color: #667eea;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            width: min(1200px, 92%);
+            margin: 45px auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.3;
+            margin-bottom: 35px;
+        }
+
+        h1 span {
+            color: #667eea;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #aaa;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: -20px 0 35px;
+        }
+
+        /* RESPONSIVE PRODUCT GRID */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        /* PRODUCT CARD */
+        .product {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            background: #202020;
+            border: 1px solid #303030;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s,
+                        border-color 0.3s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+        }
+
+        /* PRODUCT IMAGE */
+        .product img {
+            display: block;
+            width: 100%;
+            height: clamp(150px, 18vw, 210px);
+            object-fit: contain;
+            background: #fff;
+            border-radius: 9px;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        .product h2 {
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .product p {
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+            flex-grow: 1;
+        }
+
+        /* PRICE */
+        .price {
+            color: #8798ff;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 5px 0 14px;
+        }
+
+        .price::before {
+            content: "?";
+        }
+
+        /* BUY BUTTON */
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 10px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 7px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .buy-btn:hover,
+        .buy-btn:focus-visible {
+            background: #4f5fd1;
+        }
+
+        .buy-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 50px;
+            color: #aaa;
+            background: #181818;
+            border-top: 1px solid #292929;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* LAPTOPS AND SMALL DESKTOPS */
+        @media (max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 18px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .product {
+                padding: 14px;
+            }
+
+            .product img {
+                height: 190px;
+            }
+        }
+
+        /* TABLETS */
+        @media (max-width: 768px) {
+            nav {
+                gap: 8px 20px;
+                padding: 16px 12px;
+            }
+
+            nav a {
+                font-size: 15px;
+            }
+
+            .container {
+                margin: 32px auto;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
+            }
+
+            .product img {
+                height: 190px;
+            }
+
+            .product h2 {
+                font-size: 17px;
+            }
+
+            .price {
+                font-size: 20px;
+            }
+        }
+
+        /* MOBILE PHONES */
+        @media (max-width: 480px) {
+            nav {
+                gap: 6px 15px;
+                padding: 14px 8px;
+            }
+
+            nav a {
+                font-size: 14px;
+                padding: 8px 2px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            h1 {
+                font-size: 27px;
+                margin-bottom: 28px;
+            }
+
+            .section-description {
+                font-size: 13px;
+                margin-top: -14px;
+                margin-bottom: 25px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .product {
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            .product img {
+                height: clamp(110px, 35vw, 160px);
+                padding: 5px;
+                margin-bottom: 12px;
+            }
+
+            .product h2 {
+                font-size: 15px;
+                margin-bottom: 8px;
+            }
+
+            .product p {
+                font-size: 12px;
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+
+            .price {
+                font-size: 17px;
+                margin: 4px 0 12px;
+            }
+
+            .buy-btn {
+                padding: 11px 5px;
+                font-size: 13px;
+            }
+
+            footer {
+                margin-top: 30px;
+                padding: 20px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* VERY SMALL PHONES */
+        @media (max-width: 340px) {
+            .products {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .product {
+                padding: 16px;
+            }
+
+            .product img {
+                height: 200px;
+            }
+
+            .product h2 {
+                font-size: 18px;
+            }
+
+            .product p {
+                font-size: 14px;
+            }
+
+            .price {
+                font-size: 21px;
+            }
+
+            .buy-btn {
+                font-size: 15px;
+            }
+        }
+
+        /* REDUCE ANIMATIONS IF REQUESTED BY DEVICE */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+
+            .product:hover {
+                transform: none;
+            }
+        }
+
+        /* TOUCHSCREEN DEVICES */
+        @media (hover: none) {
+            .product:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html" aria-current="page">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main class="container">
+
+        <h1>Our <span>Gaming Phones</span></h1>
+
+        <p class="section-description">
+            Discover powerful phones built for your gaming experience.
+        </p>
+
+        <div class="products">
+
+            <!-- PRODUCT 1 -->
+            <article class="product">
+                <img src="ROG Phone 8.jpg" alt="ROG Phone 8" loading="lazy">
+                <h2>ROG Phone 8</h2>
+                <p>Powerful gaming smartphone with smooth performance.</p>
+                <div class="price">49,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 2 -->
+            <article class="product">
+                <img src="RedMagic 9 Pro.jpg" alt="RedMagic 9 Pro" loading="lazy">
+                <h2>RedMagic 9 Pro</h2>
+                <p>High-performance gaming phone with advanced cooling.</p>
+                <div class="price">39,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 3 -->
+            <article class="product">
+                <img src="POCO F6 Pro.jpg" alt="POCO F6 Pro" loading="lazy">
+                <h2>POCO F6 Pro</h2>
+                <p>Fast processor and smooth display for gaming.</p>
+                <div class="price">25,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 4 -->
+            <article class="product">
+                <img src="ROG Phone 7.jpg" alt="ROG Phone 7" loading="lazy">
+                <h2>ROG Phone 7</h2>
+                <p>Designed for gamers with powerful performance.</p>
+                <div class="price">35,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 5 -->
+            <article class="product">
+                <img src="Infinix GT 20 Pro.jpg" alt="Infinix GT 20 Pro" loading="lazy">
+                <h2>Infinix GT 20 Pro</h2>
+                <p>Affordable gaming phone with a high-refresh display.</p>
+                <div class="price">16,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 6 -->
+            <article class="product">
+                <img src="POCO X7 Pro.jpg" alt="POCO X7 Pro" loading="lazy">
+                <h2>POCO X7 Pro</h2>
+                <p>Excellent gaming performance with a powerful chipset.</p>
+                <div class="price">18,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 7 -->
+            <article class="product">
+                <img src="Infinix GT 30 Pro.jpg" alt="Infinix GT 30 Pro" loading="lazy">
+                <h2>Infinix GT 30 Pro</h2>
+                <p>Gaming-focused design with responsive gaming triggers.</p>
+                <div class="price">16,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 8 -->
+            <article class="product">
+                <img src="POCO F7.jpg" alt="POCO F7" loading="lazy">
+                <h2>POCO F7</h2>
+                <p>Powerful performance for demanding mobile games.</p>
+                <div class="price">22,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 9 -->
+            <article class="product">
+                <img src="RedMagic 10 Pro.jpg" alt="RedMagic 10 Pro" loading="lazy">
+                <h2>RedMagic 10 Pro</h2>
+                <p>Premium gaming phone with active cooling technology.</p>
+                <div class="price">41,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 10 -->
+            <article class="product">
+                <img src="nubia Neo 5 Pro.jpg" alt="nubia Neo 5 Pro" loading="lazy">
+                <h2>nubia Neo 5 Pro</h2>
+                <p>Gaming features and strong battery life at a budget price.</p>
+                <div class="price">14,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+            <!-- PRODUCT 11 -->
+            <article class="product">
+                <img src="TECNO POVA 7 Ultra.jpg" alt="TECNO POVA 7 Ultra" loading="lazy">
+                <h2>TECNO POVA 7 Ultra</h2>
+                <p>Stylish gaming phone built for smooth gameplay.</p>
+                <div class="price">19,999</div>
+                <a href="contact.html" class="buy-btn">Buy Now</a>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Gaming Phones Shop. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
